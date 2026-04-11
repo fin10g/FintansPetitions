@@ -1,19 +1,30 @@
 package com.example.fintanspetitions.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
 
-@Table("petitions")
+import java.util.List;
+
+@Entity
 public class Petition {
 
-    @id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
 
-    private Signer signer;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "petition")
+    private List<Signer> signers;
 
     public Petition() {
+    }
+
+    public Petition(String title, String description){
+            this.title = title;
+            this.description = description;
     }
 
     public Long getId() {
@@ -28,8 +39,8 @@ public class Petition {
         return description;
     }
 
-    public Signer getSigner() {
-        return signer;
+    public List<Signer> getSigners() {
+        return signers;
     }
 
     public void setId(Long id) {
@@ -44,8 +55,8 @@ public class Petition {
         this.description = description;
     }
 
-    public void setSigner(Signer signer) {
-        this.signer = signer;
+    public void setSigners(List<Signer> signers) {
+        this.signers = signers;
     }
 
     @Override
