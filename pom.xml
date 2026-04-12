@@ -86,6 +86,13 @@
 					<mainClass>com.example.fintanspetitions.FintanspetitionsApplication</mainClass>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.example.fintanspetitions.FintanspetitionsApplication</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
