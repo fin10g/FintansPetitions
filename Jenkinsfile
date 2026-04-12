@@ -19,5 +19,18 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage ('Archive') {
+            steps {
+                archiveArtifacts allowEmptyArchive: true,
+                    artifacts: '**/fintanspetitions.war'
+            }
+        }
+        stage ('Deploy'){
+            steps {
+                sh 'docker build -f Dockerfile -t fintanspetitions .'
+                sh 'docker rm -f "fintanspcontainer" || true'
+                sh 'docker run --name "fintanspcontainer" -p 9090:8080 --detach fintanspetitions:latest'
+            }
+        }
     }
 }
