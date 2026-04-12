@@ -32,6 +32,10 @@ pipeline {
         }
         stage ('Deploy'){
             steps {
+                timeout(time: 15, unit: "MINUTES"){
+                    input message: 'Do you want to approve the deployment?', ok: 'Yes'
+                }
+                echo"Initiating deployment"
                 sh 'docker build -f Dockerfile -t fintanspetitions .'
                 sh 'docker rm -f fintanspcontainer || true'
                 sh 'docker run --name fintanspcontainer -p 9090:8080 --detach fintanspetitions:latest'
