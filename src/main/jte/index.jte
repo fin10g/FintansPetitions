@@ -8,15 +8,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Information Form</title>
+    <title>Fintan's Petitions</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
     <form class="p-6" action="/save" method="post">
         <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">View Fintan's Petitions</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">You are restricted to one signature per email so make your voice count.</p>
             <p class="mt-1 text-sm leading-6 text-gray-500">Fields marked with an asterisk (*) are required.</p>
 
             <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
@@ -42,14 +42,13 @@
                 </div>
                 <div class="sm:col-span-6">
                     <label for="description" class="block text-sm font-medium leading-6 text-gray-900">
-                        Last name <span class="text-red-500">*</span>
+                        Description <span class="text-red-500">*</span>
                     </label>
                     <div class="mt-2">
-                        <input type="text"
-                               name="Description"
+                        <textarea name="Description"
                                id="description"
-                               value="${petition.getDescription()}"
                                class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </textarea>
                     </div>
                 </div>
 
