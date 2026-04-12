@@ -7,11 +7,16 @@ pipeline {
                 git 'https://github.com/fin10g/FintansPetitions.git'
             }
         }
-        stage ('build') {
+        stage ('Build') {
             steps {
                 sh 'mvn clean:clean'
                 sh 'mvn dependency:copy-dependencies'
                 sh 'mvn compiler:compile'
+            }
+        }
+        stage ('Test') {
+            steps{
+                sh 'mvn test'
             }
         }
         stage ('Package') {

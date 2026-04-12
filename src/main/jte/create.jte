@@ -19,14 +19,6 @@
             <p class="mt-1 text-sm leading-6 text-gray-600">Add to the badly needed dialogue in this country</p>
             <p class="mt-1 text-sm leading-6 text-gray-500">Fields marked with an asterisk (*) are required.</p>
 
-            <div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
-                SUCCESS MESSAGE
-            </div>
-
-            <div class="mt-4 p-4 bg-red-100 text-red-700 rounded">
-                ERROR MESSAGE
-            </div>
-
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-6">
                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">
