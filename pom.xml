@@ -97,9 +97,17 @@
 				<groupId>gg.jte</groupId>
 				<artifactId>jte-maven-plugin</artifactId>
 				<version>3.1.12</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>precompile</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
 					<sourceDirectory>${project.basedir}/src/main/jte</sourceDirectory>
-					<targetDirectory>${project.build.outputDirectory}/jte-classes</targetDirectory>
+					<targetDirectory>${project.build.outputDirectory}</targetDirectory>
 					<contentType>Html</contentType>
 				</configuration>
 			</plugin>
