@@ -1,8 +1,8 @@
 @import com.example.fintanspetitions.domain.Petition
 @import java.util.List
 @param List<Petition> petitions
-    @param String message = null
-    @param String error = null
+@param String message = null
+@param String error = null
 
 
 <!DOCTYPE html>
@@ -38,17 +38,17 @@
     </form>
 </div>
 <div id="petitions" class="border-b border-gray-900/10 pb-12">
-            @for(Petition petition : petitions)
-            <br>
-            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-                <form class="p-6" action="/search" method="post">
+    @for(Petition petition : petitions)
+        <br>
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <form class="p-6" action="/search" method="post">
                 <div class="petition border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">${petition.getTitle()}</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">${petition.getDescription()}</p>
                 </div>
-                </form>
-            </div>
-            @endfor
+            </form>
+        </div>
+    @endfor
 </div>
 </body>
 </html>

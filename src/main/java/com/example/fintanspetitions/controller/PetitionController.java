@@ -5,6 +5,8 @@ import com.example.fintanspetitions.domain.PetitionRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
@@ -31,14 +33,29 @@ public class PetitionController {
         return "create";
     }
 
+    @PostMapping("/create/petition")
+    public String createPetition(
+            @RequestParam String title,
+            @RequestParam String description) {
+     Petition petition = new Petition(title, description);
+     pRepository.save(petition);
+     return "redirect:/";
+    }
+
     @GetMapping("/search")
     public String search() {
-        return "Search your petitions here.";
+        return "search";
     }
 
     @GetMapping("/sign")
     public String sign() {
-        return "sign petition here with name and email.";
+        return "sign";
+    }
+
+    @GetMapping("/result")
+    public String result(Model model) {
+        //model.addAttribute("petitions", pRepository.findByTitle(search));
+        return "result";
     }
 
 }
