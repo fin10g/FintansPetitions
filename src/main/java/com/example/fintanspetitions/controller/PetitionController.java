@@ -2,20 +2,21 @@ package com.example.fintanspetitions.controller;
 
 import com.example.fintanspetitions.domain.Petition;
 import com.example.fintanspetitions.domain.PetitionRepository;
+import com.example.fintanspetitions.domain.Signer;
+import com.example.fintanspetitions.domain.SignerRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PetitionController {
 
     private final PetitionRepository pRepository;
+    private final SignerRepository signerRepository;
 
-    public PetitionController(PetitionRepository pRepository) {
+    public PetitionController(PetitionRepository pRepository, SignerRepository signerRepository) {
         this.pRepository = pRepository;
+        this.signerRepository = signerRepository;
     }
 
     @GetMapping("/")
@@ -42,14 +43,35 @@ public class PetitionController {
      return "redirect:/";
     }
 
+    @GetMapping("/petition/{id}")
+    public String petitionDetail(@PathVariable Long id, Model model) {
+        Petition petition = pRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Petition not found"));
+        model.addAttribute("petition", petition);
+        return "petition";
+    }
+
+    @PostMapping("/petition/{id}/sign")
+    public String signPetition(
+            @PathVariable Long id,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String email) {
+
+        Petition petition = pRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Petition not found"));
+
+        Signer signer = new Signer(firstName, lastName, email);
+        signer.setPetition(petition);
+        signerRepository.save(signer);
+
+        return "redirect:/petition/" + id;
+    }
+
+
     @GetMapping("/search")
     public String search() {
         return "search";
-    }
-
-    @GetMapping("/sign")
-    public String sign() {
-        return "sign";
     }
 
     @GetMapping("/result")

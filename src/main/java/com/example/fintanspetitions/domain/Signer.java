@@ -12,7 +12,7 @@ public class Signer {
     private String firstName, lastName, email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "petition")
+    @JoinColumn(name = "petition_id")
     private Petition petition;
 
     public Signer() {

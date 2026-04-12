@@ -1,15 +1,11 @@
--- SIGNERS
-INSERT INTO signer (first_name, last_name, email) VALUES
-                                                      ('Martin', 'Sweeney', 'martin.sweeney@gmail.com'),
-                                                      ('Adam', 'Regusea', 'adam.regusea@gmail.com'),
-                                                      ('Adam', 'Buxton', 'adam.buxton@gmail.com'),
-                                                      ('Amy', 'Adams', 'amy.adams@gmail.com'),
-                                                      ('Tig', 'Notaro', 'tig.notaro@gmail.com'),
-                                                      ('Yanis', 'Varoufakis', 'yanis.varoufakis@gmail.com');
+SET REFERENTIAL_INTEGRITY FALSE;
+DELETE FROM signer;
+DELETE FROM petition;
+SET REFERENTIAL_INTEGRITY TRUE;
 
 -- PETITIONS
-INSERT INTO petition (title, description) VALUES
-                                              ('GLUAS',
+INSERT INTO petition (id, title, description) VALUES
+                                              (1,'GLUAS',
                                                'Galway is one of Ireland’s fastest-growing cities, yet its transport infrastructure has not kept pace with rising demand. A Luas-style light rail system would provide a sustainable, long-term solution to the city’s increasing congestion, environmental pressures, and population growth.
 
                                                 Currently, Galway relies heavily on cars and buses, leading to chronic traffic bottlenecks, especially along key routes such as the Headford Road and the Dublin Road. A Luas system would offer a reliable and efficient alternative, reducing travel times and encouraging a shift away from private car use. This would not only ease congestion but also improve air quality and help Galway meet its climate targets.
@@ -21,7 +17,7 @@ INSERT INTO petition (title, description) VALUES
                                                 Ultimately, investing in a Luas system would future-proof Galway’s transport network. It would enhance quality of life, support sustainable development, and position the city as a modern, forward-thinking urban centre capable of meeting the challenges of the 21st century.
                                                 '),
 
-                                              ('CLUAS',
+                                              (2,'CLUAS',
                                                'Cork, as Ireland’s second-largest city and a key economic hub, faces growing pressure on its transport infrastructure. A Luas-style light rail system would provide a transformative solution to congestion, support sustainable growth, and enhance connectivity across the metropolitan area.
 
                                                 At present, Cork is heavily car-dependent, with significant traffic congestion along major corridors such as the N40 and routes into the city centre. Bus services, while important, are often delayed by the same congestion they aim to alleviate. A Luas system would offer a fast, reliable, and high-capacity alternative, encouraging commuters to shift from private cars to public transport. This modal shift would reduce emissions, improve air quality, and contribute to Ireland’s climate goals.
@@ -33,7 +29,7 @@ INSERT INTO petition (title, description) VALUES
                                                 Ultimately, a Luas system would future-proof Cork’s transport network. It would reduce congestion, promote sustainability, and reinforce Cork’s position as a vibrant, accessible, and forward-looking city.
                                                 '),
 
-                                              ('C.A.R.T',
+                                              (3,'C.A.R.T',
                                                'Connemara, one of Ireland’s most culturally rich and geographically striking regions, faces increasing challenges around accessibility, sustainability, and balanced regional development. A Connemara Rapid Transit (C.A.R.T.) system would provide a vital transport backbone, connecting rural communities while preserving the region’s unique character.
 
                                                 At present, transport in Connemara is heavily reliant on private cars and limited bus services. This creates isolation for residents without access to a vehicle, restricts employment and education opportunities, and contributes to seasonal congestion driven by tourism. A C.A.R.T. system—designed as a flexible, high-frequency public transport network—would improve mobility by linking key towns such as Clifden, Oughterard, and Maam Cross with Galway City.
@@ -46,7 +42,7 @@ INSERT INTO petition (title, description) VALUES
 
                                                 Ultimately, a Connemara Rapid Transit system represents an investment in regional equity, sustainability, and resilience—ensuring that Connemara remains vibrant, accessible, and thriving for generations to come.'),
 
-                                              ('NIMBY Wind Turbines',
+                                              (4,'NIMBY Wind Turbines',
                                                'While renewable energy is important, the proposed wind turbine development in our local area raises serious and ' ||
                                                'legitimate concerns for residents. Supporting sustainability should not mean disregarding the wellbeing, environment, and ' ||
                                                'character of established communities.
@@ -69,7 +65,7 @@ INSERT INTO petition (title, description) VALUES
                                                 In principle, renewable energy projects should be located in areas where they cause the least harm to communities. This proposal, ' ||
                                                'in its current form, places a disproportionate burden on local residents, and for that reason, it deserves strong opposition.'),
 
-                                              ('YIMBY Wind Turbines',
+                                              (5,'YIMBY Wind Turbines',
                                                'Please, for the love of god, put turbines wherever you like and stop oil reliance. That may sound blunt,' ||
                                                'but but it reflects a growing urgency grounded in reality. The continued dependence on fossil fuels is driving the ' ||
                                                'climate change crisis, exposing communities to volatile energy prices, geopolitical instability, and long-term ' ||
@@ -93,3 +89,15 @@ INSERT INTO petition (title, description) VALUES
                                                'part of the landscape and prioritizing collective survival over short-term discomfort.
 
                                                 ');
+-- SIGNERS
+INSERT INTO signer (first_name, last_name, email, petition_id) VALUES
+                                                                   ('Martin', 'Sweeney', 'martin.sweeney@gmail.com',1),
+                                                                   ('Adam', 'Regusea', 'adam.regusea@gmail.com',1),
+                                                                   ('Adam', 'Buxton', 'adam.buxton@gmail.com',2),
+                                                                   ('Amy', 'Adams', 'amy.adams@gmail.com',3),
+                                                                   ('Tig', 'Notaro', 'tig.notaro@gmail.com',4),
+                                                                   ('Yanis', 'Varoufakis', 'yanis.varoufakis@gmail.com',4);
+
+
+ALTER TABLE petition ALTER COLUMN id RESTART WITH 6;
+ALTER TABLE signer ALTER COLUMN signer_id RESTART WITH 7;

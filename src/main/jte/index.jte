@@ -40,6 +40,7 @@
 <div id="petitions" class="border-b border-gray-900/10 pb-12">
             @for(Petition petition : petitions)
             <br>
+            <a href="/petition/${petition.getId()}" style="text-decoration: none; color: inherit;">
             <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
                 <form class="p-6" action="/search" method="post">
                 <div class="petition border-b border-gray-900/10 pb-12">
@@ -48,6 +49,7 @@
                 </div>
                 </form>
             </div>
+            </a>
             @endfor
 </div>
 </body>
