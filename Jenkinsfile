@@ -27,9 +27,9 @@ pipeline {
         }
         stage ('Deploy'){
             steps {
-                sh 'sudo -S docker build -f Dockerfile -t fintanspetitions .'
-                sh 'sudo -S docker rm -f "fintanspcontainer" || true'
-                sh 'sudo -S docker run --name "fintanspcontainer" -p 9090:8080 --detach fintanspetitions:latest'
+                sh 'sudo -S "" docker build -f Dockerfile -t fintanspetitions .'
+                sh 'sudo -S "" docker rm -f "fintanspcontainer" || true'
+                sh 'sudo -S "" docker run --name "fintanspcontainer" -p 9090:8080 --detach fintanspetitions:latest'
             }
         }
     }
