@@ -1,7 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine
-
-WORKDIR /app
-
-COPY target/*.jar app.jar
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM tomcat:latest
+ADD target/*.war /usr/local/tomcat/webapps/
+EXPOSE 8081
+CMD ["catalina.sh", "run"]
