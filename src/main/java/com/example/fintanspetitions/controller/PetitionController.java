@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class PetitionController {
 
@@ -70,7 +72,12 @@ public class PetitionController {
 
 
     @GetMapping("/search")
-    public String search() {
+    public String search(@RequestParam(required = false) String term, Model model) {
+        if (term != null && !term.isBlank()) {
+            List<Petition> results = pRepository.searchByTitleOrDescription(term);
+            model.addAttribute("results", results);
+            model.addAttribute("term", term);
+        }
         return "search";
     }
 

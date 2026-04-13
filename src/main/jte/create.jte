@@ -16,7 +16,6 @@
 <div class="topnav">
     <a class="active" href="/">Home</a>
     <a href="/create">Create</a>
-    <a href="/sign">Sign</a>
     <a href="/search">Search</a>
 </div>
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">

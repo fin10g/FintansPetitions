@@ -1,62 +1,74 @@
-@param com.example.fintanspetitions.domain.Petition petition
-@param String message = null
-@param String error = null
-
+@import com.example.fintanspetitions.domain.Petition
+@import java.util.List
+@param List<Petition> results = null
+@param String term = null
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fintan's Petitions</title>
+    <title>Search Petitions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/css/styles.css" >
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .highlight {
+            background-color: #FEF08A;
+            font-weight: bold;
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 p-6">
 <div class="topnav">
-    <a class="active" href="/">Home</a>
+    <a href="/">Home</a>
     <a href="/create">Create</a>
-    <a href="/sign">Sign</a>
-    <a href="/search">Search</a>
+    <a class="active" href="/search">Search</a>
 </div>
-<div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-    <form class="p-6" action="/save" method="post">
-        <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Search Fintan's Petitions</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">Add to the badly needed dialogue in this country</p>
-            <p class="mt-1 text-sm leading-6 text-gray-500">Fields marked with an asterisk (*) are required.</p>
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div class="sm:col-span-6">
-                    <label for="title" class="block text-sm font-medium leading-6 text-gray-900">
-                        Title <span class="text-red-500">*</span>
-                    </label>
-                    <div class="mt-2">
-                        <input type="text"
-                               name="Title"
-                               id="title"
-                               value="${petition.getTitle()}"
-                               class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+<div class="max-w-3xl mx-auto">
+
+    <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <h1 class="text-2xl font-bold text-gray-900 mb-4">Search Petitions</h1>
+        <form method="GET" action="/search" class="flex gap-3">
+            <input type="text"
+                   name="term"
+                   value="${term}"
+                   placeholder="Search by title or description..."
+                   class="flex-1 rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"/>
+            <button type="submit"
+                    class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500">
+                Search
+            </button>
+        </form>
+    </div>
+
+
+    @if(term != null)
+        @if(results != null && !results.isEmpty())
+            <p class="text-sm text-gray-500 mb-4">${results.size()} result(s) found for "<strong>${term}</strong>"</p>
+            @for(Petition petition : results)
+                <a href="/petition/${petition.getId()}" style="text-decoration: none; color: inherit;">
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-4 hover:shadow-lg transition-shadow cursor-pointer">
+                        <h2 class="text-lg font-semibold text-gray-900 mb-2"
+                            id="title-${petition.getId()}">
+                            ${petition.getTitle()}
+                        </h2>
+                        <p class="text-gray-600 text-sm"
+                           id="desc-${petition.getId()}">
+                            ${petition.getDescription()}
+                        </p>
+                        <p class="text-xs text-indigo-600 mt-3">Click to view & sign →</p>
                     </div>
-                </div>
-                <div class="sm:col-span-6">
-                    <label for="description" class="block text-sm font-medium leading-6 text-gray-900">
-                        Description <span class="text-red-500">*</span>
-                    </label>
-                    <div class="mt-2">
-                        <textarea name="Description"
-                                  id="description"
-                                  class="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        </textarea>
-                    </div>
-                </div>
+                </a>
+            @endfor
+        @else
+            <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                <p class="text-gray-500">No petitions found for "<strong>${term}</strong>"</p>
             </div>
-        </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-        </div>
-    </form>
+        @endif
+    @endif
 </div>
 </body>
 </html>
