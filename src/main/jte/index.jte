@@ -23,7 +23,7 @@
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
     <form class="p-6" action="/search" method="post">
         <div class="border-b border-gray-900/10 pb-12">
-            <h1 class="text-base font-semibold leading-7 text-gray-900">View Fintan's Petitions</h1>
+            <h1 class="text-base font-semibold leading-7 text-gray-900">Fintan's Final Petitions</h1>
             <p class="mt-1 text-sm leading-6 text-gray-600">You are restricted to one signature per email so make your voice count.</p>
 
             <!--div class="mt-4 p-4 bg-green-100 text-green-700 rounded">
