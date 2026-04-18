@@ -21,12 +21,14 @@ public class PetitionController {
         this.signerRepository = signerRepository;
     }
 
+    //Requests the index.jte page and sends the petition repository through as a model attribute
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("petitions", pRepository.findAll());
         return "index";
     }
 
+    //Requests the create.jte page and uses the petition entity as a model attribute
     @GetMapping("/create")
     public String create(Model model) {
         Petition petition = new Petition();
@@ -36,6 +38,7 @@ public class PetitionController {
         return "create";
     }
 
+    //Sends Post Request from create button to persist in pRepository and redirects to index.jte
     @PostMapping("/create/petition")
     public String createPetition(
             @RequestParam String title,
@@ -45,6 +48,7 @@ public class PetitionController {
      return "redirect:/";
     }
 
+    //Returns a petition page from requested id
     @GetMapping("/petition/{id}")
     public String petitionDetail(@PathVariable Long id, Model model) {
         Petition petition = pRepository.findById(id)
@@ -53,6 +57,7 @@ public class PetitionController {
         return "petition";
     }
 
+    //Sends post request with input data from petition.
     @PostMapping("/petition/{id}/sign")
     public String signPetition(
             @PathVariable Long id,
@@ -70,7 +75,7 @@ public class PetitionController {
         return "redirect:/petition/" + id;
     }
 
-
+    //Get request that passes a search term and pRepository as a model attribute to be rendered in search.jte
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String term, Model model) {
         if (term != null && !term.isBlank()) {

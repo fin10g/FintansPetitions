@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body class="bg-gray-100 p-6">
+<!--Navbar to quickly get around the site-->
 <div class="topnav">
     <a class="active" href="/">Home</a>
     <a href="/create">Create</a>

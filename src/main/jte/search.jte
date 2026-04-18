@@ -21,6 +21,7 @@
     </style>
 </head>
 <body class="bg-gray-100 p-6">
+<!--Navbar to quickly get around the site-->
 <div class="topnav">
     <a href="/">Home</a>
     <a href="/create">Create</a>
@@ -28,7 +29,7 @@
 </div>
 
 <div class="max-w-3xl mx-auto">
-
+    <!--Renders search bar for /search get request-->
     <div class="bg-white rounded-xl shadow-md p-6 mb-6">
         <h1 class="text-2xl font-bold text-gray-900 mb-4">Search Petitions</h1>
         <form method="GET" action="/search" class="flex gap-3">
@@ -44,7 +45,7 @@
         </form>
     </div>
 
-
+    <!--Render Results for /search?{term}-->
     @if(term != null)
         @if(results != null && !results.isEmpty())
             <p class="text-sm text-gray-500 mb-4">${results.size()} result(s) found for "<strong>${term}</strong>"</p>
