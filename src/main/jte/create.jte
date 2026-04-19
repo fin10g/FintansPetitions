@@ -20,6 +20,7 @@
     <a href="/search">Search</a>
 </div>
 <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <!--Form element contains the Post Request which submits data when button is clicked-->
     <form class="p-6" action="/create/petition" method="POST">
         <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Create Fintan's Petitions</h2>

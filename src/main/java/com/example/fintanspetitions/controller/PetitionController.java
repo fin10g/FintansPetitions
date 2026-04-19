@@ -75,9 +75,10 @@ public class PetitionController {
         return "redirect:/petition/" + id;
     }
 
-    //Get request that passes a search term and pRepository as a model attribute to be rendered in search.jte
+    //Get request returns the search.jte template
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String term, Model model) {
+        //if the function receives a search term, the term and pRepository are sent to search.jte as model attributes
         if (term != null && !term.isBlank()) {
             List<Petition> results = pRepository.searchByTitleOrDescription(term);
             model.addAttribute("results", results);

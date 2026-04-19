@@ -33,7 +33,7 @@
     <!--Loops Through pRepository to output petitions in their own <div>-->
             @for(Petition petition : petitions)
             <br>
-                4<!--Turns each petition <div> into a link-->
+                <!--Turns each petition <div> into a link-->
             <a href="/petition/${petition.getId()}" style="text-decoration: none; color: inherit;">
             <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
                 <form class="p-6" action="/search" method="post">
