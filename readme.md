@@ -4,7 +4,7 @@ A Spring Boot petition platform demonstrating Continuous Integration and Continu
 
 ## Repository
 
-[FintansPetitions Repository](https://github.com/fin10g/FintansPetitions.git?utm_source=chatgpt.com)
+[FintansPetitions Repository](https://github.com/fin10g/FintansPetitions.git)
 
 ---
 
