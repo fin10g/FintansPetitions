@@ -10,6 +10,8 @@ A Spring Boot petition platform demonstrating Continuous Integration and Continu
 
 ## Overview
 
+<img width="596" height="801" alt="Screenshot 2026-11-10 at 02 51 07" src="https://github.com/user-attachments/assets/4b60e289-3e02-48e5-bcc2-176b3921f9a1" />
+
 FintansPetitions is a web application that allows users to:
 
 * Create petitions
